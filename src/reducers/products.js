@@ -12,13 +12,13 @@ const products = (state = [], action) => {
       return action.payload
     case "DEL_ORDER":
       const idd = action.payload
-      fetch('http://192.168.0.16:8080/api/orders/' + idd, { method: 'DELETE' })
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/orders/' + idd, { method: 'DELETE' })
         .then(response => {
           return response.text()
         })
       return state.filter((item) => item.id != idd)
     case "ADD_ORDER":
-      fetch('http://192.168.0.16:8080/api/orders', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const products = (state = [], action) => {
       return state
     case "DEL_PRODUCT":
       const id = action.payload
-      fetch('http://192.168.0.16:8080/api/products/' + id, { method: 'DELETE' })
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/products/' + id, { method: 'DELETE' })
         .then(response => {
           return response.text()
         })
@@ -41,7 +41,7 @@ const products = (state = [], action) => {
       return clonedState
       
     case "ADD_PRODUCT":
-      fetch('http://192.168.0.16:8080/api/products', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'SESSION': localStorage.getItem('token') }, body: JSON.stringify({
           productName: action.payload.productName,
@@ -55,7 +55,7 @@ const products = (state = [], action) => {
       return state
     case "UPDATE_PRODUCT":
       console.log("here" + action.payload)
-      fetch('http://192.168.0.16:8080/api/products', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/products', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

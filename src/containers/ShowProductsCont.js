@@ -15,7 +15,7 @@ const ShowProducts = ({ dispatch }) => {
 
   }
   const getProducts=()=>{
-    const fetchedData= fetch('http://192.168.0.16:8080/api/userOrders',{method:'GET',headers :
+    const fetchedData= fetch('https://aqueous-savannah-82662.herokuapp.com/api/userOrders',{method:'GET',headers :
     {'SESSION': localStorage.getItem('token')}})
     .then(response=>{return response.json()
         // console.log(response)

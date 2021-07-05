@@ -4,7 +4,7 @@ const users = (state = [], action)=>{
     switch (action.type) {
     case "REGISTER":
 
-      fetch('http://192.168.0.16:8080/api/register', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
           username: action.payload.username,
@@ -18,7 +18,7 @@ const users = (state = [], action)=>{
       return state
       case "LOGIN":
 
-      fetch('http://192.168.0.16:8080/api/login', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
           username: action.payload.username,
@@ -36,7 +36,7 @@ const users = (state = [], action)=>{
         
       return state
       case "LOGOUT":
-      fetch('http://192.168.0.16:8080/api/logout', {
+      fetch('https://aqueous-savannah-82662.herokuapp.com/api/logout', {
         method: 'GET',
         headers: { 'SESSION': localStorage.getItem('token') }
         })
