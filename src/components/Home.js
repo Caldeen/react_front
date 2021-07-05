@@ -32,7 +32,7 @@ export const Home = () => {
                         </ul>
                         <p><b>Backend:</b></p>
                         <ul>
-                            <li>Dosęp <strong>OFFLINE</strong></li>
+                            <li>Dosęp <strong>ONLINE</strong></li>
                             <li>Odczyt z bazy danych</li>
                             <li>Operacje CRUD</li>
                             <li>Operacje Dostęp do produktów per user i komunikacja z serwerem</li>
