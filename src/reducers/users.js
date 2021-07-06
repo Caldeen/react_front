@@ -1,7 +1,7 @@
 
 
-const users = (state = [], action)=>{
-    switch (action.type) {
+const users = (state = [], action) => {
+  switch (action.type) {
     case "REGISTER":
 
       fetch('https://aqueous-savannah-82662.herokuapp.com/api/register', {
@@ -12,11 +12,15 @@ const users = (state = [], action)=>{
         })
       })
         .then(response => {
-          return response.text()
-        }).then(data=>console.log(data))
+          return response.json()
+        }).then(data => {
+          if (data.username !== 'none')
+            alert("registered user " + data.username)
+          console.log(data)
+        })
 
       return state
-      case "LOGIN":
+    case "LOGIN":
 
       fetch('https://aqueous-savannah-82662.herokuapp.com/api/login', {
         method: 'POST',
@@ -26,31 +30,41 @@ const users = (state = [], action)=>{
         })
       })
         .then(response => {
-            localStorage.setItem('token',response.headers.get('session'))
-            return response.json()
-        }).then(data=>{
-            console.log(data)
-            localStorage.setItem('user',data.username)
+          localStorage.setItem('token', response.headers.get('session'))
+          return response.json()
+        }).then(data => {
+          console.log(data)
+          if (data.username !== 'none')
+            alert("logged in as " + data.username)
+          else {
+            alert('failed logging in')
+          }
+          localStorage.setItem('user', data.username)
         })
-        
-        
+
+
       return state
-      case "LOGOUT":
+    case "LOGOUT":
+
       fetch('https://aqueous-savannah-82662.herokuapp.com/api/logout', {
         method: 'GET',
         headers: { 'SESSION': localStorage.getItem('token') }
-        })
+      })
         .then(response => {
-            return response.text()
-        }).then(data=>{
-            localStorage.clear()
-            console.log(data)
+          let restText = response.text()
+          console.log(restText)
+          return restText
+        }).then(data => {
+          if (data === "logged out")
+            alert("successfully logged out")
+          localStorage.clear()
+          console.log("hello? : " + data)
         })
-        
+
       return state
-      default:
+    default:
       return state
-    }
+  }
 }
 
 
